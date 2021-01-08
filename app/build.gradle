@@ -44,6 +44,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 
         }
+
+        increaseBuildVersion()
+
         applicationVariants.all { variant ->
             variant.outputs.each { output ->
                 project.ext { appName = 'AndroidAppForAzureDevOps' }
