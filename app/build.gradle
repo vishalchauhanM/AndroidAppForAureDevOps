@@ -7,12 +7,12 @@ android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
 
-    def result = "git rev-list HEAD --count".execute().text.trim().toInteger() //unix
-    if(result.empty) result = "PowerShell -Command git rev-list HEAD --count".execute().text.trim().toInteger() //windows
+    def result = "git rev-list HEAD --count".execute().text.trim() //unix
+    if(result.empty) result = "PowerShell -Command git rev-list HEAD --count".execute().text.trim() //windows
     if(result.empty) throw new RuntimeException("Could not generate versioncode on this platform? Cmd output: ${result.text}")
     def versionMajor = 1
     def versionMinor = 0
-    def versionPatch = result
+    def versionPatch = result.toInteger()
     def versionNumber = (versionMajor * 100000) + (versionMinor * 10000) + versionPatch
 
         defaultConfig {
